@@ -31,10 +31,10 @@
     [_view1 setClipsToBounds:YES];
     
     
-    [_view0 setImage:[UIImage imageNamed:@"up3.jpg"]];
+    [_view0 setImage:[UIImage imageNamed:@"up1.jpg"]];
     
     [_view1 setNeedsBetterFace:YES];
-    [_view1 setImage:[UIImage imageNamed:@"up3.jpg"]];
+    [_view1 setImage:[UIImage imageNamed:@"up1.jpg"]];
 }
 
 - (void)didReceiveMemoryWarning
