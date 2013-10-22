@@ -16,16 +16,56 @@
                                 <rect key="frame" x="0.0" y="276" width="568" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
-                                    <barButtonItem title="Up1" id="Zro-gv-Lan"/>
-                                    <barButtonItem title="Up2" id="W5t-ih-cw5"/>
-                                    <barButtonItem title="Up3" id="Qja-tq-D7N"/>
-                                    <barButtonItem title="Down1" id="Vlg-PT-ra7"/>
-                                    <barButtonItem title="Down2" id="Lxl-oz-6hP"/>
-                                    <barButtonItem title="Down3" id="hrQ-ie-ntH"/>
-                                    <barButtonItem title="Land1" id="pdt-tr-keO"/>
-                                    <barButtonItem title="Land2" id="Uup-oe-btL"/>
-                                    <barButtonItem title="Land3" id="86R-rP-Fsq"/>
-                                    <barButtonItem title="Multi" id="mVt-1e-4v5"/>
+                                    <barButtonItem title="Up1" id="Zro-gv-Lan">
+                                        <connections>
+                                            <action selector="tabPressed:" destination="vXZ-lx-hvc" id="g56-Fk-Kq7"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem tag="1" title="Up2" id="W5t-ih-cw5">
+                                        <connections>
+                                            <action selector="tabPressed:" destination="vXZ-lx-hvc" id="CoX-jx-xdp"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem tag="2" title="Up3" id="Qja-tq-D7N">
+                                        <connections>
+                                            <action selector="tabPressed:" destination="vXZ-lx-hvc" id="ATw-o4-34s"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem tag="3" title="Up4" id="Vlg-PT-ra7">
+                                        <connections>
+                                            <action selector="tabPressed:" destination="vXZ-lx-hvc" id="nuN-jp-Ii2"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem tag="4" title="Land1" id="Lxl-oz-6hP">
+                                        <connections>
+                                            <action selector="tabPressed:" destination="vXZ-lx-hvc" id="TCB-AS-RG2"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem tag="5" title="Land2" id="hrQ-ie-ntH">
+                                        <connections>
+                                            <action selector="tabPressed:" destination="vXZ-lx-hvc" id="Zis-lM-68V"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem tag="6" title="Land3" id="pdt-tr-keO">
+                                        <connections>
+                                            <action selector="tabPressed:" destination="vXZ-lx-hvc" id="rIa-zn-vPd"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem tag="7" title="Land4" id="Uup-oe-btL">
+                                        <connections>
+                                            <action selector="tabPressed:" destination="vXZ-lx-hvc" id="5iO-rJ-uSg"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem tag="8" title="Multi1" id="86R-rP-Fsq">
+                                        <connections>
+                                            <action selector="tabPressed:" destination="vXZ-lx-hvc" id="kxp-ap-pAi"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem tag="9" title="Multi2" id="mVt-1e-4v5">
+                                        <connections>
+                                            <action selector="tabPressed:" destination="vXZ-lx-hvc" id="Olf-P1-Tbm"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="6fv-VS-Tc0">

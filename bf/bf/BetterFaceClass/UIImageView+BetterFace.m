@@ -90,28 +90,28 @@ char fooKey;
         finalSize.width = size.width/size.height * finalSize.height;
         fixedCenter.x = finalSize.width / size.width * fixedCenter.x;
         fixedCenter.y = finalSize.width / size.width * fixedCenter.y;
-        while (offset.x >= 0 && offset.x + self.bounds.size.width <= finalSize.width) {
-            if (fixedCenter.x - offset.x <= self.bounds.size.width * 0.5) {
-                break;
-            } else {
-                offset.x += 1;
-            }
+        
+        offset.x = fixedCenter.x - self.bounds.size.width * 0.5;
+        if (offset.x < 0) {
+            offset.x = 0;
+        } else if (offset.x + self.bounds.size.width > finalSize.width) {
+            offset.x = finalSize.width - self.bounds.size.width;
         }
-        offset.x = -offset.x - 1;
+        offset.x = - offset.x;
     } else {
         //move vertical
         finalSize.width = self.bounds.size.width;
         finalSize.height = size.height/size.width * finalSize.width;
         fixedCenter.x = finalSize.width / size.width * fixedCenter.x;
         fixedCenter.y = finalSize.width / size.width * fixedCenter.y;
-        while (offset.y >= 0 && offset.y + self.bounds.size.height <= finalSize.height) {
-            if (fixedCenter.y - offset.y <= self.bounds.size.height * 0.3) {
-                break;
-            } else {
-                offset.y += 1;
-            }
+        
+        offset.y = fixedCenter.y - self.bounds.size.height * 0.3;
+        if (offset.y < 0) {
+            offset.y = 0;
+        } else if (offset.y + self.bounds.size.height > finalSize.height){
+            offset.y = finalSize.height = self.bounds.size.height;
         }
-        offset.y = -offset.y - 1;
+        offset.y = - offset.y;
     }
     
     CALayer *layer = [CALayer layer];

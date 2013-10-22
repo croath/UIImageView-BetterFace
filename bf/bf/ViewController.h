@@ -12,4 +12,5 @@
 @property (weak, nonatomic) IBOutlet UIImageView *view0;
 @property (weak, nonatomic) IBOutlet UIImageView *view1;
 
+- (IBAction)tabPressed:(id)sender;
 @end

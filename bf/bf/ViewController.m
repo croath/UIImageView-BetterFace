@@ -29,12 +29,7 @@
     [_view1.layer setBorderWidth:0.5f];
     [_view1 setContentMode:UIViewContentModeScaleAspectFill];
     [_view1 setClipsToBounds:YES];
-    
-    
-    [_view0 setImage:[UIImage imageNamed:@"up1.jpg"]];
-    
     [_view1 setNeedsBetterFace:YES];
-    [_view1 setImage:[UIImage imageNamed:@"up1.jpg"]];
 }
 
 - (void)didReceiveMemoryWarning
@@ -43,4 +38,44 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)tabPressed:(id)sender {
+    NSString *imageStr = @"";
+    switch ([sender tag]) {
+        case 0:
+            imageStr = @"up1.jpg";
+            break;
+        case 1:
+            imageStr = @"up2.jpg";
+            break;
+        case 2:
+            imageStr = @"up3.jpg";
+            break;
+        case 3:
+            imageStr = @"up4.jpg";
+            break;
+        case 4:
+            imageStr = @"l1.jpg";
+            break;
+        case 5:
+            imageStr = @"l2.jpg";
+            break;
+        case 6:
+            imageStr = @"l3.jpg";
+            break;
+        case 7:
+            imageStr = @"l4.jpg";
+            break;
+        case 8:
+            imageStr = @"m1.jpg";
+            break;
+        case 9:
+            imageStr = @"m2.jpg";
+            break;
+        default:
+            break;
+    }
+    
+    [_view0 setImage:[UIImage imageNamed:imageStr]];
+    [_view1 setImage:[UIImage imageNamed:imageStr]];
+}
 @end
