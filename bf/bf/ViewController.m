@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface ViewController ()
 
@@ -18,6 +19,16 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    [_view0.layer setBorderColor:[UIColor grayColor].CGColor];
+    [_view0.layer setBorderWidth:0.5f];
+    [_view0 setContentMode:UIViewContentModeScaleAspectFill];
+    [_view0 setClipsToBounds:YES];
+    
+    [_view1.layer setBorderColor:[UIColor grayColor].CGColor];
+    [_view1.layer setBorderWidth:0.5f];
+    [_view1 setContentMode:UIViewContentModeScaleAspectFill];
+    [_view1 setClipsToBounds:YES];
+    [_view0 setImage:[UIImage imageNamed:@"up3.jpg"]];
 }
 
 - (void)didReceiveMemoryWarning

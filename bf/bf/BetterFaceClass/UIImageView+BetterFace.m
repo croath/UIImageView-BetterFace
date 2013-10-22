@@ -10,8 +10,9 @@
 
 @implementation UIImageView (BetterFace)
 
-- (void)setImage:(UIImage *)image{
-    [self setContentMode:UIViewContentModeCenter];
-}
+//- (void)setImage:(UIImage *)image{
+//    [self setImage:image];
+//    [self setContentMode:UIViewContentModeCenter];
+//}
 
 @end

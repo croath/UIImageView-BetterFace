@@ -10,6 +10,6 @@
 
 @interface UIImageView (BetterFace)
 
-- (void)setImage:(UIImage *)image;
+//- (void)setImage:(UIImage *)image;
 
 @end

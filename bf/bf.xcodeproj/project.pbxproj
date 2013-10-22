@@ -33,6 +33,7 @@
 		2783FE3A1816ADF600F3F6E9 /* d1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2783FE301816ADF600F3F6E9 /* d1.jpg */; };
 		2783FE3B1816ADF600F3F6E9 /* d2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2783FE311816ADF600F3F6E9 /* d2.jpg */; };
 		2783FE3C1816ADF600F3F6E9 /* d3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2783FE321816ADF600F3F6E9 /* d3.jpg */; };
+		2783FE3E1816B80000F3F6E9 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2783FE3D1816B80000F3F6E9 /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +79,7 @@
 		2783FE301816ADF600F3F6E9 /* d1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = d1.jpg; sourceTree = "<group>"; };
 		2783FE311816ADF600F3F6E9 /* d2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = d2.jpg; sourceTree = "<group>"; };
 		2783FE321816ADF600F3F6E9 /* d3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = d3.jpg; sourceTree = "<group>"; };
+		2783FE3D1816B80000F3F6E9 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +87,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2783FE3E1816B80000F3F6E9 /* QuartzCore.framework in Frameworks */,
 				2783FE1F1816990100F3F6E9 /* CoreImage.framework in Frameworks */,
 				2783FDEC181697D200F3F6E9 /* CoreGraphics.framework in Frameworks */,
 				2783FDEE181697D200F3F6E9 /* UIKit.framework in Frameworks */,
@@ -127,6 +130,7 @@
 		2783FDE8181697D200F3F6E9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2783FE3D1816B80000F3F6E9 /* QuartzCore.framework */,
 				2783FE1E1816990100F3F6E9 /* CoreImage.framework */,
 				2783FDE9181697D200F3F6E9 /* Foundation.framework */,
 				2783FDEB181697D200F3F6E9 /* CoreGraphics.framework */,
