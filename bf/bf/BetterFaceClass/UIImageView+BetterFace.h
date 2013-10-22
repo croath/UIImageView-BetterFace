@@ -10,6 +10,9 @@
 
 @interface UIImageView (BetterFace)
 
-//- (void)setImage:(UIImage *)image;
+@property (nonatomic) BOOL needsBetterFace;
+
+void hack_uiimageview_bf();
+- (void)setBetterFaceImage:(UIImage *)image;
 
 @end

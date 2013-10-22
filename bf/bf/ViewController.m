@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import <QuartzCore/QuartzCore.h>
+#import "UIImageView+BetterFace.h"
 
 @interface ViewController ()
 
@@ -28,7 +29,12 @@
     [_view1.layer setBorderWidth:0.5f];
     [_view1 setContentMode:UIViewContentModeScaleAspectFill];
     [_view1 setClipsToBounds:YES];
+    
+    
     [_view0 setImage:[UIImage imageNamed:@"up3.jpg"]];
+    
+    [_view1 setNeedsBetterFace:YES];
+    [_view1 setImage:[UIImage imageNamed:@"up3.jpg"]];
 }
 
 - (void)didReceiveMemoryWarning
