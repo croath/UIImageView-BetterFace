@@ -13,7 +13,7 @@ Try UIImageView-BetterFace!
 
 Like this:
 
-[!preview](https://raw.github.com/croath/UIImageView-BetterFace/master/doc/preview.png)
+![preview](https://raw.github.com/croath/UIImageView-BetterFace/master/doc/preview.png)
 
 ##How?
 
