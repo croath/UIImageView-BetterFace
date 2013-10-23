@@ -27,7 +27,7 @@ Like this:
 ##Known issues
 
  - it will be slow to render large-size images, and showing the strange animation
- - it may take a lot of memory while reusing the UIImageView
+ - ~~it may take a lot of memory while reusing the UIImageView~~
  
 ##Other
 
