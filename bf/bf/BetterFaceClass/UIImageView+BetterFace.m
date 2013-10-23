@@ -9,6 +9,7 @@
 #import "UIImageView+BetterFace.h"
 #import <objc/runtime.h>
 #define BETTER_LAYER_NAME @"BETTER_LAYER_NAME"
+#define GOLDEN_RATIO (0.618)
 
 @implementation UIImageView (BetterFace)
 
@@ -105,7 +106,7 @@ char nbfKey;
         fixedCenter.x = finalSize.width / size.width * fixedCenter.x;
         fixedCenter.y = finalSize.width / size.width * fixedCenter.y;
         
-        offset.y = fixedCenter.y - self.bounds.size.height * 0.3;
+        offset.y = fixedCenter.y - self.bounds.size.height * (1-GOLDEN_RATIO);
         if (offset.y < 0) {
             offset.y = 0;
         } else if (offset.y + self.bounds.size.height > finalSize.height){
