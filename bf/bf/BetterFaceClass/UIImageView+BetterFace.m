@@ -8,6 +8,7 @@
 
 #import "UIImageView+BetterFace.h"
 #import <objc/runtime.h>
+#define BETTER_LAYER_NAME @"BETTER_LAYER_NAME"
 
 @implementation UIImageView (BetterFace)
 
@@ -26,16 +27,16 @@ void hack_uiimageview_bf(){
     [self faceDetect:image];
 }
 
-char fooKey;
+char nbfKey;
 - (void)setNeedsBetterFace:(BOOL)needsBetterFace{
     objc_setAssociatedObject(self,
-                             &fooKey,
+                             &nbfKey,
                              [NSNumber numberWithBool:needsBetterFace],
                              OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 - (BOOL)needsBetterFace{
-    NSNumber *associatedObject = objc_getAssociatedObject(self, &fooKey);
+    NSNumber *associatedObject = objc_getAssociatedObject(self, &nbfKey);
     return [associatedObject boolValue];
 }
 
@@ -56,9 +57,9 @@ char fooKey;
         
     } else {
         NSLog(@"succeed %d faces", [features count]);
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self markAfterFaceDetect:features size:CGSizeMake(CGImageGetWidth(aImage.CGImage), CGImageGetHeight(aImage.CGImage))];
-        });
+        [self markAfterFaceDetect:features
+                             size:CGSizeMake(CGImageGetWidth(aImage.CGImage),
+                                             CGImageGetHeight(aImage.CGImage))];
     }
 }
 
@@ -66,7 +67,6 @@ char fooKey;
     CGRect fixedRect = CGRectMake(MAXFLOAT, MAXFLOAT, 0, 0);
     CGFloat rightBorder = 0, bottomBorder = 0;
     for (CIFaceFeature *f in features){
-        NSLog(@"%f %f", f.bounds.origin.x, f.bounds.origin.y);
         CGRect oneRect = f.bounds;
         oneRect.origin.y = size.height - oneRect.origin.y - oneRect.size.height;
         
@@ -113,14 +113,30 @@ char fooKey;
         }
         offset.y = - offset.y;
     }
+    dispatch_async(dispatch_get_main_queue(), ^{
+        CALayer *layer = [self imageLayer];
+        layer.frame = CGRectMake(offset.x,
+                                 offset.y,
+                                 finalSize.width,
+                                 finalSize.height);
+        layer.contents = (id)self.image.CGImage;
+    });
+}
+
+- (CALayer *)imageLayer {
+    for (CALayer *layer in [self.layer sublayers]) {
+        if ([[layer name] isEqualToString:BETTER_LAYER_NAME]) {
+            return layer;
+        }
+    }
     
     CALayer *layer = [CALayer layer];
-    layer.frame = CGRectMake(offset.x,
-                             offset.y,
-                             finalSize.width,
-                             finalSize.height);
-    layer.contents = (id)self.image.CGImage;
+    [layer setName:BETTER_LAYER_NAME];
+    layer.actions = @{@"contents": [NSNull null],
+                      @"bounds": [NSNull null],
+                      @"position": [NSNull null]};
     [self.layer addSublayer:layer];
+    return layer;
 }
 
 @end
