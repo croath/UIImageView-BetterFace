@@ -63,7 +63,6 @@ char fastSpeedKey;
                                               context:nil
                                               options:opts];
     
-    //Pull out the features of the face and loop through them
     NSArray* features = [detector featuresInImage:image];
     
     if ([features count]==0) {
