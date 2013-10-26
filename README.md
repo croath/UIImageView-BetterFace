@@ -23,6 +23,10 @@ Like this:
  4. add this:`[anImageView setNeedsBetterFace:YES];`
  5. done
  6. still have problems? clone the project and see the demo.
+ 
+##Too slow?
+
+try set the 'fast' property to `YES` to get the faster speed(low ccuracy)
 
 ##Known issues
 

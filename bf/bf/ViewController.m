@@ -30,6 +30,7 @@
     [_view1 setContentMode:UIViewContentModeScaleAspectFill];
     [_view1 setClipsToBounds:YES];
     [_view1 setNeedsBetterFace:YES];
+    [_view1 setFast:YES];
 }
 
 - (void)didReceiveMemoryWarning

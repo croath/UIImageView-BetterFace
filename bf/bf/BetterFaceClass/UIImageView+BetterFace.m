@@ -41,10 +41,23 @@ char nbfKey;
     return [associatedObject boolValue];
 }
 
+char fastSpeedKey;
+- (void)setFast:(BOOL)fast{
+    objc_setAssociatedObject(self,
+                             &fastSpeedKey,
+                             [NSNumber numberWithBool:fast],
+                             OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (BOOL)fast{
+    NSNumber *associatedObject = objc_getAssociatedObject(self, &fastSpeedKey);
+    return [associatedObject boolValue];
+}
+
 - (void)faceDetect:(UIImage *)aImage
 {
     CIImage* image = [CIImage imageWithCGImage:aImage.CGImage];
-    NSDictionary  *opts = [NSDictionary dictionaryWithObject:CIDetectorAccuracyHigh
+    NSDictionary  *opts = [NSDictionary dictionaryWithObject:[self fast] ? CIDetectorAccuracyLow : CIDetectorAccuracyHigh
                                                       forKey:CIDetectorAccuracy];
     CIDetector* detector = [CIDetector detectorOfType:CIDetectorTypeFace
                                               context:nil
@@ -57,7 +70,7 @@ char nbfKey;
         NSLog(@"no faces");
         
     } else {
-        NSLog(@"succeed %d faces", [features count]);
+        NSLog(@"succeed %lu faces", (unsigned long)[features count]);
         [self markAfterFaceDetect:features
                              size:CGSizeMake(CGImageGetWidth(aImage.CGImage),
                                              CGImageGetHeight(aImage.CGImage))];

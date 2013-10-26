@@ -11,6 +11,7 @@
 @interface UIImageView (BetterFace)
 
 @property (nonatomic) BOOL needsBetterFace;
+@property (nonatomic) BOOL fast;
 
 void hack_uiimageview_bf();
 - (void)setBetterFaceImage:(UIImage *)image;
