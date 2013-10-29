@@ -26,12 +26,16 @@ Like this:
  
 ##Too slow?
 
-try set the 'fast' property to `YES` to get the faster speed(low ccuracy)
+try set the `fast` property to `YES` to get the faster speed(low ccuracy)
 
 ##Known issues
 
  - it will be slow to render large-size images, and showing the strange animation
  - ~~it may take a lot of memory while reusing the UIImageView~~
+
+##Who use BetterFace?
+
+If you're building your applications using UIImageView-BetterFace, please let me know! (add your application name & App Store link here and pullreuqest this README~
  
 ##Other
 
