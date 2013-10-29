@@ -26,7 +26,7 @@ Like this:
  
 ##Too slow?
 
-try set the `fast` property to `YES` to get the faster speed(low ccuracy)
+try set the `fast` property to `YES` to get the faster speed(lower accuracy)
 
 ##Known issues
 
