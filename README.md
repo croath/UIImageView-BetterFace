@@ -18,11 +18,12 @@ Like this:
 ##How?
 
  1. drag `UIImageView+BetterFace.h` and `UIImageView+BetterFace.m` to your project
- 2. import the .h file
- 3. add `hack_uiimageview_bf();` to your `main` function
- 4. add this:`[anImageView setNeedsBetterFace:YES];`
- 5. done
- 6. still have problems? clone the project and see the demo.
+ 2. add CoreImage.framework to your project
+ 3. import the .h file
+ 4. add `hack_uiimageview_bf();` to your `main` function
+ 5. add this:`[anImageView setNeedsBetterFace:YES];`
+ 6. done
+ 7. still have problems? clone the project and see the demo.
  
 ##Too slow?
 
