@@ -9,8 +9,8 @@
 #import <UIKit/UIKit.h>
 
 typedef NS_ENUM(NSUInteger, BFAccuracy) {
-  kBFAccuracyLow = 0,
-  kBFAccuracyHigh,
+    kBFAccuracyLow = 0,
+    kBFAccuracyHigh,
 };
 
 @interface UIImage (BetterFace)
