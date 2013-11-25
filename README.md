@@ -1,7 +1,9 @@
 UIImageView-BetterFace
 ======================
 
-a UIImageView extension to let the picture-cutting with faces showing better
+A UIImageView extension to let the picture-cutting with faces showing better
+
+Last update in v0.2_stable : add a UIImage+BetterFace category, so clipping images becomes possible(clap!)
 
 ##Why?
 
@@ -31,7 +33,7 @@ try set the `fast` property to `YES` to get the faster speed(lower accuracy)
 
 ##Known issues
 
- - it will be slow to render large-size images, and showing the strange animation
+ - ~~it will be slow to render large-size images, and showing the strange animation
  - ~~it may take a lot of memory while reusing the UIImageView~~
 
 ##Who use BetterFace?
