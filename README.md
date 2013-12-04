@@ -5,6 +5,8 @@ A UIImageView extension to let the picture-cutting with faces showing better
 
 Last update in v0.2_stable : add a UIImage+BetterFace category, so clipping images becomes possible(clap!)
 
+Looking for an Android version? Check this! [https://github.com/beartung/tclip-android]
+
 ##Why?
 
  - Have problems showing the resized image previews? 
