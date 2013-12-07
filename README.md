@@ -35,7 +35,7 @@ try set the `fast` property to `YES` to get the faster speed(lower accuracy)
 
 ##Known issues
 
- - ~~it will be slow to render large-size images, and showing the strange animation
+ - ~~it will be slow to render large-size images, and showing the strange animation~~
  - ~~it may take a lot of memory while reusing the UIImageView~~
 
 ##Who use BetterFace?
