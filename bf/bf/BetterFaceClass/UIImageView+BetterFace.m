@@ -56,24 +56,29 @@ char fastSpeedKey;
 
 - (void)faceDetect:(UIImage *)aImage
 {
-    CIImage* image = [CIImage imageWithCGImage:aImage.CGImage];
-    NSDictionary  *opts = [NSDictionary dictionaryWithObject:[self fast] ? CIDetectorAccuracyLow : CIDetectorAccuracyHigh
-                                                      forKey:CIDetectorAccuracy];
-    CIDetector* detector = [CIDetector detectorOfType:CIDetectorTypeFace
-                                              context:nil
-                                              options:opts];
-    
-    NSArray* features = [detector featuresInImage:image];
-    
-    if ([features count]==0) {
-        NSLog(@"no faces");
+    dispatch_queue_t queue = dispatch_queue_create("com.croath.betterface.queue", NULL);
+    dispatch_async(queue, ^{
+        CIImage* image = [CIImage imageWithCGImage:aImage.CGImage];
+        NSDictionary  *opts = [NSDictionary dictionaryWithObject:[self fast] ? CIDetectorAccuracyLow : CIDetectorAccuracyHigh
+                                                          forKey:CIDetectorAccuracy];
+        CIDetector* detector = [CIDetector detectorOfType:CIDetectorTypeFace
+                                                  context:nil
+                                                  options:opts];
         
-    } else {
-        NSLog(@"succeed %lu faces", (unsigned long)[features count]);
-        [self markAfterFaceDetect:features
-                             size:CGSizeMake(CGImageGetWidth(aImage.CGImage),
-                                             CGImageGetHeight(aImage.CGImage))];
-    }
+        NSArray* features = [detector featuresInImage:image];
+        
+        if ([features count] == 0) {
+            NSLog(@"no faces");
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [[self imageLayer] removeFromSuperlayer];
+            });
+        } else {
+            NSLog(@"succeed %lu faces", (unsigned long)[features count]);
+            [self markAfterFaceDetect:features
+                                 size:CGSizeMake(CGImageGetWidth(aImage.CGImage),
+                                                 CGImageGetHeight(aImage.CGImage))];
+        }
+    });
 }
 
 -(void)markAfterFaceDetect:(NSArray *)features size:(CGSize)size{
@@ -126,6 +131,7 @@ char fastSpeedKey;
         }
         offset.y = - offset.y;
     }
+    
     dispatch_async(dispatch_get_main_queue(), ^{
         CALayer *layer = [self imageLayer];
         layer.frame = CGRectMake(offset.x,
