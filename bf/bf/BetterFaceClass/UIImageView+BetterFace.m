@@ -49,6 +49,18 @@ char fastSpeedKey;
                              OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
+char detectorKey;
+- (void)setDetector:(CIDetector *)detector{
+    objc_setAssociatedObject(self,
+                             &detectorKey,
+                             detector,
+                             OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+-(CIDetector *)detector{
+    return objc_getAssociatedObject(self, &detectorKey);
+}
+
 - (BOOL)fast{
     NSNumber *associatedObject = objc_getAssociatedObject(self, &fastSpeedKey);
     return [associatedObject boolValue];
@@ -61,11 +73,15 @@ char fastSpeedKey;
         CIImage* image = [CIImage imageWithCGImage:aImage.CGImage];
         NSDictionary  *opts = [NSDictionary dictionaryWithObject:[self fast] ? CIDetectorAccuracyLow : CIDetectorAccuracyHigh
                                                           forKey:CIDetectorAccuracy];
-        CIDetector* detector = [CIDetector detectorOfType:CIDetectorTypeFace
-                                                  context:nil
-                                                  options:opts];
         
-        NSArray* features = [detector featuresInImage:image];
+        if (!self.detector) {
+            self.detector = [CIDetector detectorOfType:CIDetectorTypeFace
+                                                      context:nil
+                                                      options:opts];
+        }
+        
+        
+        NSArray* features = [self.detector featuresInImage:image];
         
         if ([features count] == 0) {
             NSLog(@"no faces");
