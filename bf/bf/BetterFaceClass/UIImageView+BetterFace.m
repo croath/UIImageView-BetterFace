@@ -10,6 +10,7 @@
 #import <objc/runtime.h>
 #define BETTER_LAYER_NAME @"BETTER_LAYER_NAME"
 #define GOLDEN_RATIO (0.618)
+static CIDetector *detector;
 
 @implementation UIImageView (BetterFace)
 
@@ -74,14 +75,14 @@ char detectorKey;
         NSDictionary  *opts = [NSDictionary dictionaryWithObject:[self fast] ? CIDetectorAccuracyLow : CIDetectorAccuracyHigh
                                                           forKey:CIDetectorAccuracy];
         
-        if (!self.detector) {
-            self.detector = [CIDetector detectorOfType:CIDetectorTypeFace
+        if (!detector) {
+            detector = [CIDetector detectorOfType:CIDetectorTypeFace
                                                       context:nil
                                                       options:opts];
         }
         
         
-        NSArray* features = [self.detector featuresInImage:image];
+        NSArray* features = [detector featuresInImage:image];
         
         if ([features count] == 0) {
             NSLog(@"no faces");
