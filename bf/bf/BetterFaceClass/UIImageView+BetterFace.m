@@ -74,7 +74,7 @@ char detectorKey;
         CIImage* image = [CIImage imageWithCGImage:aImage.CGImage];
         
         
-        if (!detector) {
+        if (detector == nil) {
             NSDictionary  *opts = [NSDictionary dictionaryWithObject:[self fast] ? CIDetectorAccuracyLow : CIDetectorAccuracyHigh
                                                               forKey:CIDetectorAccuracy];
             detector = [CIDetector detectorOfType:CIDetectorTypeFace
