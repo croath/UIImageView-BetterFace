@@ -71,9 +71,10 @@ char detectorKey;
 {
     dispatch_queue_t queue = dispatch_queue_create("com.croath.betterface.queue", NULL);
     dispatch_async(queue, ^{
-        CIImage* image = [CIImage imageWithCGImage:aImage.CGImage];
-        
-        
+        CIImage* image = aImage.CIImage;
+        if (image == nil) { // just in case the UIImage was created using a CGImage revert to the previous, slower implementation
+            image = [CIImage imageWithCGImage:aImage.CGImage];
+        }
         if (detector == nil) {
             NSDictionary  *opts = [NSDictionary dictionaryWithObject:[self fast] ? CIDetectorAccuracyLow : CIDetectorAccuracyHigh
                                                               forKey:CIDetectorAccuracy];
@@ -81,7 +82,6 @@ char detectorKey;
                                                       context:nil
                                                       options:opts];
         }
-        
         
         NSArray* features = [detector featuresInImage:image];
         
