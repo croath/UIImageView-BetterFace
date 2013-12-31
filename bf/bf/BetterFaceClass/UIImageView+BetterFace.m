@@ -10,6 +10,7 @@
 #import <objc/runtime.h>
 #define BETTER_LAYER_NAME @"BETTER_LAYER_NAME"
 #define GOLDEN_RATIO (0.618)
+static CIDetector *detector;
 
 @implementation UIImageView (BetterFace)
 
@@ -49,6 +50,18 @@ char fastSpeedKey;
                              OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
+char detectorKey;
+- (void)setDetector:(CIDetector *)detector{
+    objc_setAssociatedObject(self,
+                             &detectorKey,
+                             detector,
+                             OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+-(CIDetector *)detector{
+    return objc_getAssociatedObject(self, &detectorKey);
+}
+
 - (BOOL)fast{
     NSNumber *associatedObject = objc_getAssociatedObject(self, &fastSpeedKey);
     return [associatedObject boolValue];
@@ -58,12 +71,17 @@ char fastSpeedKey;
 {
     dispatch_queue_t queue = dispatch_queue_create("com.croath.betterface.queue", NULL);
     dispatch_async(queue, ^{
-        CIImage* image = [CIImage imageWithCGImage:aImage.CGImage];
-        NSDictionary  *opts = [NSDictionary dictionaryWithObject:[self fast] ? CIDetectorAccuracyLow : CIDetectorAccuracyHigh
-                                                          forKey:CIDetectorAccuracy];
-        CIDetector* detector = [CIDetector detectorOfType:CIDetectorTypeFace
-                                                  context:nil
-                                                  options:opts];
+        CIImage* image = aImage.CIImage;
+        if (image == nil) { // just in case the UIImage was created using a CGImage revert to the previous, slower implementation
+            image = [CIImage imageWithCGImage:aImage.CGImage];
+        }
+        if (detector == nil) {
+            NSDictionary  *opts = [NSDictionary dictionaryWithObject:[self fast] ? CIDetectorAccuracyLow : CIDetectorAccuracyHigh
+                                                              forKey:CIDetectorAccuracy];
+            detector = [CIDetector detectorOfType:CIDetectorTypeFace
+                                                      context:nil
+                                                      options:opts];
+        }
         
         NSArray* features = [detector featuresInImage:image];
         
