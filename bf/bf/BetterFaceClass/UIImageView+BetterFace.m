@@ -10,6 +10,13 @@
 #import <objc/runtime.h>
 #define BETTER_LAYER_NAME @"BETTER_LAYER_NAME"
 #define GOLDEN_RATIO (0.618)
+
+#ifdef BF_DEBUG
+#define BFLog(format...) NSLog(format)
+#else
+#define BFLog(format...)
+#endif
+
 static CIDetector *detector;
 
 @implementation UIImageView (BetterFace)
@@ -86,12 +93,12 @@ char detectorKey;
         NSArray* features = [detector featuresInImage:image];
         
         if ([features count] == 0) {
-            NSLog(@"no faces");
+            BFLog(@"no faces");
             dispatch_async(dispatch_get_main_queue(), ^{
                 [[self imageLayer] removeFromSuperlayer];
             });
         } else {
-            NSLog(@"succeed %lu faces", (unsigned long)[features count]);
+            BFLog(@"succeed %lu faces", (unsigned long)[features count]);
             [self markAfterFaceDetect:features
                                  size:CGSizeMake(CGImageGetWidth(aImage.CGImage),
                                                  CGImageGetHeight(aImage.CGImage))];

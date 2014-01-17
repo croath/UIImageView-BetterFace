@@ -10,6 +10,12 @@
 
 #define GOLDEN_RATIO (0.618)
 
+#ifdef BF_DEBUG
+#define BFLog(format...) NSLog(format)
+#else
+#define BFLog(format...)
+#endif
+
 @implementation UIImage (BetterFace)
 
 - (UIImage *)betterFaceImageForSize:(CGSize)size
@@ -18,10 +24,10 @@
     NSArray *features = [UIImage _faceFeaturesInImage:self accuracy:accurary];
     
     if ([features count]==0) {
-        NSLog(@"no faces");
+        BFLog(@"no faces");
         return nil;
     } else {
-        NSLog(@"succeed %lu faces", (unsigned long)[features count]);
+        BFLog(@"succeed %lu faces", (unsigned long)[features count]);
         return [self _subImageForFaceFeatures:features
                                          size:size];
     }
