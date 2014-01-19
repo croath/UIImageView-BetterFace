@@ -41,6 +41,9 @@ try set the `fast` property to `YES` to get the faster speed(lower accuracy)
 ##Who use BetterFace?
 
 If you're building your applications using UIImageView-BetterFace, please let me know! (add your application name & App Store link here and pullreuqest this README~
+
+##Debugging
+Add `BF_DEBUG` to your pre compile macros or `#define BF_DEBUG` to your `prefix.pch` file in order to see turn ON debugging logs on the console.
  
 ##Other
 
