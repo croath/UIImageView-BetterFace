@@ -40,6 +40,8 @@ try set the `fast` property to `YES` to get the faster speed(lower accuracy)
 
 ##Who use BetterFace?
 
+ - App of http://getprix.com
+
 If you're building your applications using UIImageView-BetterFace, please let me know! (add your application name & App Store link here and pullreuqest this README~
 
 ##Debugging
