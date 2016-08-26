@@ -23,12 +23,21 @@ static CIDetector *detector;
 
 void hack_uiimageview_bf(){
     Method oriSetImgMethod = class_getInstanceMethod([UIImageView class], @selector(setImage:));
-    Method newSetImgMethod = class_getInstanceMethod([UIImageView class], @selector(setBetterFaceImage:));
+    Method newSetImgMethod = class_getInstanceMethod([UIImageView class], @selector(_setBetterFaceImage:));
     method_exchangeImplementations(newSetImgMethod, oriSetImgMethod);
 }
 
 - (void)setBetterFaceImage:(UIImage *)image{
-    [self setBetterFaceImage:image];
+    [self setImage:image];
+    if (![self needsBetterFace]) {
+        return;
+    }
+    
+    [self faceDetect:image];
+}
+
+- (void)_setBetterFaceImage:(UIImage *)image{
+    [self _setBetterFaceImage:image];
     if (![self needsBetterFace]) {
         return;
     }
