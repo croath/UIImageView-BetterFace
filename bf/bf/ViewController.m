@@ -19,7 +19,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
     [_view0.layer setBorderColor:[UIColor grayColor].CGColor];
     [_view0.layer setBorderWidth:0.5f];
     [_view0 setContentMode:UIViewContentModeScaleAspectFill];
@@ -31,12 +30,6 @@
     [_view1 setClipsToBounds:YES];
     [_view1 setNeedsBetterFace:YES];
     [_view1 setFast:YES];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (IBAction)tabPressed:(id)sender {

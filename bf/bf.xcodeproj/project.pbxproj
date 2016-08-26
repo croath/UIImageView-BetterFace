@@ -31,6 +31,7 @@
 		2783FE381816ADF600F3F6E9 /* up2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2783FE2D1816ADF600F3F6E9 /* up2.jpg */; };
 		2783FE391816ADF600F3F6E9 /* up3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2783FE2E1816ADF600F3F6E9 /* up3.jpg */; };
 		2783FE3E1816B80000F3F6E9 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2783FE3D1816B80000F3F6E9 /* QuartzCore.framework */; };
+		27A3C2681D5D5DA100EF6666 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27A3C2671D5D5DA100EF6666 /* Launch Screen.storyboard */; };
 		27C77B4F181707E300F3F073 /* up4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 27C77B4E181707E300F3F073 /* up4.jpg */; };
 		27C77B51181708BF00F3F073 /* l4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 27C77B50181708BF00F3F073 /* l4.jpg */; };
 		27C77B53181709F000F3F073 /* m2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 27C77B52181709F000F3F073 /* m2.jpg */; };
@@ -78,6 +79,7 @@
 		2783FE2D1816ADF600F3F6E9 /* up2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = up2.jpg; sourceTree = "<group>"; };
 		2783FE2E1816ADF600F3F6E9 /* up3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = up3.jpg; sourceTree = "<group>"; };
 		2783FE3D1816B80000F3F6E9 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		27A3C2671D5D5DA100EF6666 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		27C77B4E181707E300F3F073 /* up4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = up4.jpg; sourceTree = "<group>"; };
 		27C77B50181708BF00F3F073 /* l4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = l4.jpg; sourceTree = "<group>"; };
 		27C77B52181709F000F3F073 /* m2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = m2.jpg; sourceTree = "<group>"; };
@@ -151,6 +153,7 @@
 				2783FDF8181697D200F3F6E9 /* AppDelegate.h */,
 				2783FDF9181697D200F3F6E9 /* AppDelegate.m */,
 				2783FDFB181697D200F3F6E9 /* Main.storyboard */,
+				27A3C2671D5D5DA100EF6666 /* Launch Screen.storyboard */,
 				2783FDFE181697D200F3F6E9 /* ViewController.h */,
 				2783FDFF181697D200F3F6E9 /* ViewController.m */,
 				2783FE01181697D200F3F6E9 /* Images.xcassets */,
@@ -284,7 +287,7 @@
 		2783FDDE181697D200F3F6E9 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = Croath;
 				TargetAttributes = {
 					2783FE06181697D200F3F6E9 = {
@@ -322,6 +325,7 @@
 				2783FE341816ADF600F3F6E9 /* l2.jpg in Resources */,
 				2783FE381816ADF600F3F6E9 /* up2.jpg in Resources */,
 				2783FE02181697D200F3F6E9 /* Images.xcassets in Resources */,
+				27A3C2681D5D5DA100EF6666 /* Launch Screen.storyboard in Resources */,
 				27C77B51181708BF00F3F073 /* l4.jpg in Resources */,
 				2783FE371816ADF600F3F6E9 /* up1.jpg in Resources */,
 				2783FDF4181697D200F3F6E9 /* InfoPlist.strings in Resources */,
@@ -405,7 +409,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -420,6 +423,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -444,7 +448,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -481,6 +484,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "bf/bf-Prefix.pch";
 				INFOPLIST_FILE = "bf/bf-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.croath.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -494,6 +498,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "bf/bf-Prefix.pch";
 				INFOPLIST_FILE = "bf/bf-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.croath.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -502,7 +507,6 @@
 		2783FE1C181697D300F3F6E9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/bf.app/bf";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -516,6 +520,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "bfTests/bfTests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.croath.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
@@ -525,7 +530,6 @@
 		2783FE1D181697D300F3F6E9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/bf.app/bf";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -535,6 +539,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "bf/bf-Prefix.pch";
 				INFOPLIST_FILE = "bfTests/bfTests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.croath.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
