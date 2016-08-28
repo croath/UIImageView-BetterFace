@@ -161,7 +161,7 @@ char detectorKey;
         if (offset.y < 0) {
             offset.y = 0;
         } else if (offset.y + self.bounds.size.height > finalSize.height){
-            offset.y = finalSize.height = self.bounds.size.height;
+            offset.y = finalSize.height - self.bounds.size.height;
         }
         offset.y = - offset.y;
     }
