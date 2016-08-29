@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/croath/UIImageView-BetterFace.svg)](https://travis-ci.org/croath/UIImageView-BetterFace)
+
 UIImageView-BetterFace
 ======================
 
