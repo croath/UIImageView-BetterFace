@@ -37,56 +37,79 @@
 {
     CGRect fixedRect = CGRectMake(MAXFLOAT, MAXFLOAT, 0, 0);
     CGFloat rightBorder = 0, bottomBorder = 0;
-    for (CIFaceFeature *faceFeature in faceFeatures){
+    CGSize imageSize = self.size;
+    
+    for (CIFaceFeature * faceFeature in faceFeatures){
         CGRect oneRect = faceFeature.bounds;
-        oneRect.origin.y = size.height - oneRect.origin.y - oneRect.size.height;
+        // Mirror the frame of the feature
+        oneRect.origin.y = imageSize.height - oneRect.origin.y - oneRect.size.height;
         
+        // Always get the minimum x & y
         fixedRect.origin.x = MIN(oneRect.origin.x, fixedRect.origin.x);
         fixedRect.origin.y = MIN(oneRect.origin.y, fixedRect.origin.y);
         
+        // Calculate the faces rectangle
         rightBorder = MAX(oneRect.origin.x + oneRect.size.width, rightBorder);
         bottomBorder = MAX(oneRect.origin.y + oneRect.size.height, bottomBorder);
     }
     
+    // Calculate the size of rectangle of faces
     fixedRect.size.width = rightBorder - fixedRect.origin.x;
     fixedRect.size.height = bottomBorder - fixedRect.origin.y;
     
     CGPoint fixedCenter = CGPointMake(fixedRect.origin.x + fixedRect.size.width / 2.0,
                                       fixedRect.origin.y + fixedRect.size.height / 2.0);
     CGPoint offset = CGPointZero;
-    CGSize finalSize = size;
-    if (size.width / size.height > self.size.width / self.size.height) {
+    CGSize finalSize = imageSize;
+    if (imageSize.width / imageSize.height > size.width / size.height) {
         //move horizonal
-        finalSize.height = self.size.height;
-        finalSize.width = size.width/size.height * finalSize.height;
-        fixedCenter.x = finalSize.width / size.width * fixedCenter.x;
-        fixedCenter.y = finalSize.width / size.width * fixedCenter.y;
+        finalSize.height = size.height;
+        finalSize.width = imageSize.width/imageSize.height * finalSize.height;
         
-        offset.x = fixedCenter.x - self.size.width * 0.5;
+        // Scale the fixed center with image scale(scale image to adjust image view)
+        fixedCenter.x = finalSize.width/imageSize.width * fixedCenter.x;
+        fixedCenter.y = finalSize.width/imageSize.width * fixedCenter.y;
+        
+        offset.x = fixedCenter.x - size.width * 0.5;
         if (offset.x < 0) {
+            // Move outside left
             offset.x = 0;
-        } else if (offset.x + self.size.width > finalSize.width) {
-            offset.x = finalSize.width - self.size.width;
+        } else if (offset.x + size.width > finalSize.width) {
+            // Move outside right
+            offset.x = finalSize.width - size.width;
         }
-        offset.x = - offset.x;
+        
+        // If you want the final image is fit to the image view, you should set the width adjust the image view.
+        finalSize.width = size.width;
     } else {
         //move vertical
-        finalSize.width = self.size.width;
-        finalSize.height = size.height/size.width * finalSize.width;
-        fixedCenter.x = finalSize.width / size.width * fixedCenter.x;
-        fixedCenter.y = finalSize.width / size.width * fixedCenter.y;
+        finalSize.width = size.width;
+        finalSize.height = imageSize.height/imageSize.width * finalSize.width;
         
-        offset.y = fixedCenter.y - self.size.height * (1-GOLDEN_RATIO);
+        // Scale the fixed center with image scale(scale image to adjust image view)
+        fixedCenter.x = finalSize.width/imageSize.width * fixedCenter.x;
+        fixedCenter.y = finalSize.width/imageSize.width * fixedCenter.y;
+        
+        offset.y = fixedCenter.y - size.height * (1 - GOLDEN_RATIO);
         if (offset.y < 0) {
+            // Move outside top
             offset.y = 0;
-        } else if (offset.y + self.size.height > finalSize.height){
-            offset.y = finalSize.height = self.size.height;
+        } else if (offset.y + size.height > finalSize.height){
+            // Move outside bottom
+            // offset.y = finalSize.height = size.height;
+            offset.y = finalSize.height - size.height;
         }
-        offset.y = - offset.y;
+        
+        // If you want the final image is fit to the image view, you should set the height adjust the image view.
+        finalSize.height = size.height;
     }
     
-    CGRect finalRect = CGRectApplyAffineTransform(CGRectMake(offset.x, offset.y, finalSize.width, finalSize.height),
-                                                  CGAffineTransformMakeScale(self.scale, self.scale));
+    // The finalSize is just fit the image view now, so we should scale the frame to the image size.
+    CGFloat scale = imageSize.width/finalSize.width;
+    CGAffineTransform transform = CGAffineTransformMakeScale(scale, scale);
+    // Get the final image rect
+    CGRect finalRect = CGRectApplyAffineTransform(CGRectMake(offset.x, offset.y, finalSize.width, finalSize.height),transform);
+    // Creat image
     CGImageRef imageRef = CGImageCreateWithImageInRect([self CGImage], finalRect);
     UIImage *subImage = [UIImage imageWithCGImage:imageRef scale:self.scale orientation:self.imageOrientation];
     CGImageRelease(imageRef);

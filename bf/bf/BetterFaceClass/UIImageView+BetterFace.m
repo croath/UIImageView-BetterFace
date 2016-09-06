@@ -23,12 +23,21 @@ static CIDetector *detector;
 
 void hack_uiimageview_bf(){
     Method oriSetImgMethod = class_getInstanceMethod([UIImageView class], @selector(setImage:));
-    Method newSetImgMethod = class_getInstanceMethod([UIImageView class], @selector(setBetterFaceImage:));
+    Method newSetImgMethod = class_getInstanceMethod([UIImageView class], @selector(_setBetterFaceImage:));
     method_exchangeImplementations(newSetImgMethod, oriSetImgMethod);
 }
 
 - (void)setBetterFaceImage:(UIImage *)image{
-    [self setBetterFaceImage:image];
+    [self setImage:image];
+    if (![self needsBetterFace]) {
+        return;
+    }
+    
+    [self faceDetect:image];
+}
+
+- (void)_setBetterFaceImage:(UIImage *)image{
+    [self _setBetterFaceImage:image];
     if (![self needsBetterFace]) {
         return;
     }
@@ -152,7 +161,7 @@ char detectorKey;
         if (offset.y < 0) {
             offset.y = 0;
         } else if (offset.y + self.bounds.size.height > finalSize.height){
-            offset.y = finalSize.height = self.bounds.size.height;
+            offset.y = finalSize.height - self.bounds.size.height;
         }
         offset.y = - offset.y;
     }

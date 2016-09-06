@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/croath/UIImageView-BetterFace.svg)](https://travis-ci.org/croath/UIImageView-BetterFace)
+
 UIImageView-BetterFace
 ======================
 
@@ -9,7 +11,7 @@ Looking for an Android version? Check this! [https://github.com/beartung/tclip-a
 
 ##Why?
 
- - Have problems showing the resized image previews? 
+ - Have problems showing the resized image previews?
  - People in the preview only have chins but not faces?
  - A group photo doesn't look well?
 
@@ -21,14 +23,14 @@ Like this:
 
 ##How?
 
- 1. drag `UIImageView+BetterFace.h` and `UIImageView+BetterFace.m` to your project
- 2. add CoreImage.framework to your project
- 3. import the .h file
- 4. add `hack_uiimageview_bf();` to your `main` function
- 5. add this:`[anImageView setNeedsBetterFace:YES];`
- 6. done
- 7. still have problems? clone the project and see the demo.
- 
+ 1. Drag `UIImageView+BetterFace.h` and `UIImageView+BetterFace.m` to your project
+ 2. Add CoreImage.framework to your project
+ 3. Import the .h file
+ 4. Add this:`[anImageView setNeedsBetterFace:YES];`
+ 5. If you want all `setImage:` methods do the magic: Add `hack_uiimageview_bf();` to your `main` function; Otherwise call `setBetterFaceImage:` for every image you want to make the face detection.
+ 6. Done
+ 7. Still have problems? clone the project and see the demo.
+
 ##Too slow?
 
 try set the `fast` property to `YES` to get the faster speed(lower accuracy)
@@ -46,7 +48,7 @@ If you're building your applications using UIImageView-BetterFace, please let me
 
 ##Debugging
 Add `BF_DEBUG` to your pre compile macros or `#define BF_DEBUG` to your `prefix.pch` file in order to see turn ON debugging logs on the console.
- 
+
 ##Other
 
 Any issue and pull request is welcome.
